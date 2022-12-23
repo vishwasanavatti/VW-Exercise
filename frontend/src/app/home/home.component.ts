@@ -93,7 +93,6 @@ export class HomeComponent {
       this.orderComponents.push(order);
     }
 
-    console.log(this.orderComponents);
   }
 
 }

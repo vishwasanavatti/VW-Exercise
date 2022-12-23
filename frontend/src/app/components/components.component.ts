@@ -34,8 +34,13 @@ export class ComponentsComponent implements OnInit {
   public updateQuantity(qty: number, id: number): void {
     let comp = Object.assign({}, this.components.find(c => c.id === id));
     comp.quantity = qty;
+    let index = this.orderComponents.findIndex(c => c.id === id);
+    if (index === -1) {
+      this.orderComponents.push(comp);
+    } else {
+      this.orderComponents[index] = comp;
+    }
 
-    this.orderComponents.push(comp);
   }
 
 }
