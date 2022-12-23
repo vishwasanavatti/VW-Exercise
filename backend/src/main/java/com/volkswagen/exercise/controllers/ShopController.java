@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("/shop")
@@ -21,13 +22,11 @@ public class ShopController {
 	@RequestMapping("/stock/model/{modelId}")
 	public List<Component> listComponents(@PathVariable int modelId) {
 		try{
-			List<Component> components = shopService.listComponentsForModelId(modelId);
-			if (components == null) {
-				throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-			}
-
-			return components;
-		} catch (Exception e) {
+			return shopService.listComponentsForModelId(modelId);
+		} catch (NoSuchElementException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+		catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
