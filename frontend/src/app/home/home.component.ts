@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ShopComponent } from '../model/component.model';
 
 @Component({
@@ -34,10 +34,6 @@ export class HomeComponent {
   });
 
   public get model() { return this.form.get('model'); }
-
-  public get hasOtherValuesThanNumber(): boolean {
-    return Boolean(this.modelError['required'])
-  }
 
   public get showComponents(): boolean {
     return this.showComponent;
@@ -75,18 +71,6 @@ export class HomeComponent {
 
   public get isDisabled(): boolean {
     return this.form.get('model').invalid;
-  }
-
-  private modelError(): ValidationErrors {
-    return this.hasControlError(this.model);
-  }
-
-  private hasControlError(control: AbstractControl) {
-    if (!control || control.untouched) {
-      return {};
-    }
-
-    return control.errors ?? {};
   }
 
   public updateOrders(order: ShopComponent) {

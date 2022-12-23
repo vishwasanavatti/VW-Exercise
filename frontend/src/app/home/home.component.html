@@ -1,9 +1,16 @@
 <form [formGroup]="form">
     <div class="container">
-        <div class="text">Enter model number</div>
-        <input type="text" id="model" class="search-input" formControlName="model">
-        <span *ngIf="hasOtherValuesThanNumber"> Only number is allowed</span>
-        <button (click)="onClick()" [disabled]="isDisabled" class="btn">
+        <mat-form-field class="example-full-width">
+            <mat-label>Enter the model</mat-label>
+            <input type="text" matInput [formControl]="model">
+            <mat-error *ngIf="model.hasError('pattern') && !model.hasError('required')">
+                only numbers are allowed
+            </mat-error>
+            <mat-error *ngIf="model.hasError('required')">
+                Number is required
+            </mat-error>
+        </mat-form-field>
+        <button mat-raised-button (click)="onClick()" [disabled]="isDisabled" color="primary">
             Search
         </button>
     </div>
