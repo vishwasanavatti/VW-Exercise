@@ -20,6 +20,8 @@ export class HomeComponent {
 
   orderComponents: ShopComponent[] = [];
 
+  showLoader = false;
+
   constructor(private httpClient: HttpClient) { }
 
   public form = new FormGroup({
@@ -46,6 +48,7 @@ export class HomeComponent {
   }
 
   public onClick(): void {
+    this.showLoader = true;
     const modelId = +this.model.value;
     this.httpClient
       .get(
@@ -56,9 +59,11 @@ export class HomeComponent {
           this.showComponent = true;
           this.components = response as ShopComponent[];
           this.model.setValue('');
+          this.showLoader = false;
         },
         (error) => {
           // Todo
+          this.showLoader = false;
           if (error.status !== 404) {
             // Show the message that no component is available
             this.showComponent = false;

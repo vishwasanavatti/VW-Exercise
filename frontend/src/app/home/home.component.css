@@ -24,3 +24,8 @@
 .order {
     flex: 1;
 }
+
+.spinner {
+    margin: 50%;
+    align-self: center;
+}
