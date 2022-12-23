@@ -19,6 +19,12 @@ export class OrderComponent implements OnInit {
 
   showLoader = false;
 
+  showError = false;
+
+  showSuccess = false;
+
+  errors: string[] = [];
+
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
@@ -34,6 +40,7 @@ export class OrderComponent implements OnInit {
 
   public placeOrder(): void {
     this.showLoader = true;
+    console.log('here');
     this.httpClient
       .post(
         this.apiHostUrl + '/order',
@@ -41,11 +48,15 @@ export class OrderComponent implements OnInit {
       )
       .subscribe(
         (response) => {
-          this.orderPlaced.emit();
           this.showLoader = false;
+          this.showSuccess = true;
+          setTimeout(() => {
+            this.orderPlaced.emit();
+          }, 2000);
         },
         (error) => {
-          // Todo
+          this.errors = error.error;
+          this.showError = true
           this.showLoader = false;
         }
       );

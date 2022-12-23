@@ -1,13 +1,21 @@
 <div class="container">
     <header>Cart</header>
     <mat-divider></mat-divider>
+    <div *ngIf="showSuccess" class="status success">
+        <div>Order Placed Successfully!</div>
+    </div>
+    <div *ngIf="showError" class="status error">
+        <div *ngFor="let error of errors; ">
+            <li>{{error}}</li>
+        </div>
+    </div>
     <div class="spinner" *ngIf="showLoader; else cart">
         <app-spinner></app-spinner>
     </div>
 </div>
 
 <ng-template #cart>
-    <div class="orders">
+    <div *ngIf="!showSuccess" class="orders">
         <mat-card *ngFor="let order of orders; ">
             <mat-card-header>
                 <mat-card-title>{{order.name}}</mat-card-title>

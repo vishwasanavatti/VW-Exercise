@@ -10,7 +10,6 @@ import { ComponentsComponent } from './components/components.component';
 import { OrderComponent } from './order/order.component';
 import { MaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ModalComponent } from './modal/modal.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { SpinnerComponent } from './spinner/spinner.component';
     HomeComponent,
     ComponentsComponent,
     OrderComponent,
-    ModalComponent,
     SpinnerComponent,
   ],
   imports: [
