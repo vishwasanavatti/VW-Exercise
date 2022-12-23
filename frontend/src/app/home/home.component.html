@@ -11,9 +11,9 @@
 
 <div class="components-order">
     <div class="components">
-        <app-components [components]="this.components"></app-components>
+        <app-components *ngIf="showComponents" [components]="this.components"></app-components>
     </div>
     <div class="order">
-        <app-order></app-order>
+        <app-order *ngIf="showOrders"></app-order>
     </div>
 </div>

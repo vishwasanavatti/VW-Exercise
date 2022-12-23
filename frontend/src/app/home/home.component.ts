@@ -12,6 +12,10 @@ export class HomeComponent {
 
   apiHostUrl = 'http://localhost:8080';
 
+  showComponent = false;
+
+  showOrder = false;
+
   components: ShopComponent[] = [];
 
   constructor(private httpClient: HttpClient) { }
@@ -31,6 +35,14 @@ export class HomeComponent {
     return Boolean(this.modelError['required'])
   }
 
+  public get showComponents(): boolean {
+    return this.showComponent;
+  }
+
+  public get showOrders(): boolean {
+    return this.showOrder;
+  }
+
   public onClick(): void {
     const modelId = +this.model.value;
     this.httpClient
@@ -39,11 +51,16 @@ export class HomeComponent {
       )
       .subscribe(
         (response) => {
+          this.showComponent = true;
           this.components = response as ShopComponent[];
           this.model.setValue('');
         },
         (error) => {
           // Todo
+          if (error.status !== 404) {
+            // Show the message that no component is available
+            this.showComponent = false;
+          }
           this.components = [];
         }
       );
