@@ -56,6 +56,7 @@ export class HomeComponent {
           this.components = response as ShopComponent[];
           this.model.setValue('');
           this.showLoader = false;
+          this.form.get('model').setErrors(null);
         },
         (error) => {
           // Todo
