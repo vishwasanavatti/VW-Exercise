@@ -1,4 +1,4 @@
-export interface Component {
+export interface ShopComponent {
     id: number;
     name: string,
     price: number,

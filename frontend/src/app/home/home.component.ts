@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { ShopComponent } from '../model/component.model';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomeComponent {
 
   apiHostUrl = 'http://localhost:8080';
 
-  components: Component[];
+  components: ShopComponent[] = [];
 
   constructor(private httpClient: HttpClient) { }
 
@@ -38,10 +39,12 @@ export class HomeComponent {
       )
       .subscribe(
         (response) => {
-          this.components = response as Component[];
+          this.components = response as ShopComponent[];
+          this.model.setValue('');
         },
         (error) => {
           // Todo
+          this.components = [];
         }
       );
   }
