@@ -34,7 +34,6 @@ public class ShopController {
 
 	@RequestMapping("/order")
 	public ResponseEntity<?> orderComponents(@RequestBody List<Component> components) {
-		System.out.println("yes");
 		try {
 			shopService.updateComponents(components);
 			return ResponseEntity.status(HttpStatus.CREATED).build();

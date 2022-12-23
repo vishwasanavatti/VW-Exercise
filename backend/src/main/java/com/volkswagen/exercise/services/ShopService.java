@@ -32,7 +32,7 @@ public class ShopService {
 
 		catalog.getComponentIds().forEach(id -> {
 			Component component = componentService.getComponentById(id);
-			if(component != null) {
+			if(component != null && component.getQuantity() > 0) {
 				components.add(component);
 			}
 		});
