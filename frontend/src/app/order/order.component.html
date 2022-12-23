@@ -15,20 +15,23 @@
 </div>
 
 <ng-template #cart>
-    <div *ngIf="!showSuccess" class="orders">
-        <mat-card *ngFor="let order of orders; ">
-            <mat-card-header>
-                <mat-card-title>{{order.name}}</mat-card-title>
-                <mat-card-subtitle>Quantity : {{order.quantity}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>Price: {{order.price * order.quantity}}</mat-card-content>
-            <mat-card-actions>
-                <button mat-raised-button color="warn" (click)="removeOrderFromCart(order.id)" class="close">X</button>
-            </mat-card-actions>
-        </mat-card>
-    </div>
-    <mat-divider></mat-divider>
-    <div class="order-button">
-        <button mat-raised-button class="order" (click)="placeOrder()" color="primary">Order</button>
+    <div *ngIf="!showSuccess">
+        <div class="orders">
+            <mat-card *ngFor="let order of orders; ">
+                <mat-card-header>
+                    <mat-card-title>{{order.name}}</mat-card-title>
+                    <mat-card-subtitle>Quantity : {{order.quantity}}</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>Price: {{order.price * order.quantity}}</mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="warn" (click)="removeOrderFromCart(order.id)"
+                        class="close">X</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+        <mat-divider></mat-divider>
+        <div class="order-button">
+            <button mat-raised-button class="order" (click)="placeOrder()" color="primary">Order</button>
+        </div>
     </div>
 </ng-template>
