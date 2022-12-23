@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    font-size: 24px;
+}
+
+.search-input {
+    margin: 0 10px;
+}
+
+.components-order{
+    display: flex;
+    flex-direction: row;
+    height: 85vh;
+}
+
+.components {
+    flex: 2;
+    overflow-y: auto;
+}
+
+.order {
+    flex: 1;
+}

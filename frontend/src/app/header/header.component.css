@@ -1,0 +1,38 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+header {
+  background: white;
+  padding: 1.5em 0;
+  border: 5px solid rgb(20, 34, 140);
+}
+
+header a {
+  color: rgb(20, 34, 140);
+  text-decoration: none;
+}
+
+header a.logo {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+header nav {
+  float: right;
+}
+
+header nav ul {
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+}
+
+header nav ul li a {
+  font-size: 24px;
+  padding: 1em;
+}
+
+
+  

@@ -1,0 +1,52 @@
+header {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: aliceblue;
+}
+
+.container {
+    border: 1px solid grey;
+    padding: 10px;
+    height: 80vh;
+}
+
+.components {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.mat-card{
+    width: 200px;
+    height: 250px;
+    margin: 10px;
+}
+
+.component-image {
+    width: 150px;
+    margin: 0 15px;
+}
+
+.mat-card-title {
+    overflow:hidden ;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    width: 200px;
+}
+
+.mat-card-content{
+    margin: 5px 15px;
+}
+
+.mat-card-actions{
+    justify-content: space-evenly;
+    margin: 0 15px;
+    display: flex;
+}
+
+.quantity-input{
+    width: 50px;
+    height: 30px;
+}
