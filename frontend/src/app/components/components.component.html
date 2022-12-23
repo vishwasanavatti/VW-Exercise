@@ -19,9 +19,18 @@
             <p>Price : {{comp.price}}</p>
             <p>Quantity : {{comp.quantity}}</p>
         </mat-card-content>
-        <mat-card-actions>
-            <input type="number" class="quantity-input" min="0" placeholder="Qty">
-            <button mat-button>Add to Cart</button>
-        </mat-card-actions>
+        <div class="qty-button">
+            <mat-form-field appearance="fill">
+                <mat-label>Qty</mat-label>
+                <mat-select (selectionChange)="updateQuantity($event.value, comp.id)">
+                    <mat-option *ngFor="let i of quantityRange(comp.quantity)" [value]="i+1">
+                        {{i+1}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-card-actions>
+                <button mat-button color="primary" (click)="add(comp.id)">Add to Cart</button>
+            </mat-card-actions>
+        </div>
     </mat-card>
-</ng-template>
+</ng-template>x

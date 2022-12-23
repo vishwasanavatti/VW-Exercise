@@ -18,6 +18,8 @@ export class HomeComponent {
 
   components: ShopComponent[] = [];
 
+  orderComponents: ShopComponent[] = [];
+
   constructor(private httpClient: HttpClient) { }
 
   public form = new FormGroup({
@@ -80,6 +82,16 @@ export class HomeComponent {
     }
 
     return control.errors ?? {};
+  }
+
+  public updateOrders(order: ShopComponent) {
+    let comp = this.orderComponents.find(c => c.id === order.id);
+    if (comp) {
+      comp.quantity += order.quantity;
+    } else {
+      this.orderComponents.push(comp);
+    }
+
   }
 
 }
