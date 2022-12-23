@@ -42,7 +42,7 @@ export class HomeComponent {
   }
 
   public get showOrders(): boolean {
-    return this.showOrder;
+    return this.orderComponents.length > 0;
   }
 
   public onClick(): void {
@@ -88,10 +88,12 @@ export class HomeComponent {
     let comp = this.orderComponents.find(c => c.id === order.id);
     if (comp) {
       comp.quantity += order.quantity;
-    } else {
-      this.orderComponents.push(comp);
+    }
+    else {
+      this.orderComponents.push(order);
     }
 
+    console.log(this.orderComponents);
   }
 
 }

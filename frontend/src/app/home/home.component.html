@@ -15,6 +15,6 @@
             (cartComponent)="updateOrders($event)"></app-components>
     </div>
     <div class="order">
-        <app-order *ngIf="showOrders"></app-order>
+        <app-order *ngIf="showOrders" [orders]="this.orderComponents"></app-order>
     </div>
 </div>

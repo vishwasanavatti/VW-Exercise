@@ -26,14 +26,16 @@ export class ComponentsComponent implements OnInit {
   }
 
   public add(compId: number): void {
+    const comp = this.orderComponents.find(c => c.id === compId);
 
+    this.cartComponent.emit(comp);
   }
 
   public updateQuantity(qty: number, id: number): void {
     let comp = Object.assign({}, this.components.find(c => c.id === id));
     comp.quantity = qty;
 
-    this.cartComponent.emit(comp);
+    this.orderComponents.push(comp);
   }
 
 }
