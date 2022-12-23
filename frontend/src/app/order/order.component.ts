@@ -17,6 +17,8 @@ export class OrderComponent implements OnInit {
   @Output()
   orderPlaced: EventEmitter<void> = new EventEmitter();
 
+  showLoader = false;
+
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
@@ -31,7 +33,7 @@ export class OrderComponent implements OnInit {
   }
 
   public placeOrder(): void {
-    console.log('here');
+    this.showLoader = true;
     this.httpClient
       .post(
         this.apiHostUrl + '/order',
@@ -40,10 +42,11 @@ export class OrderComponent implements OnInit {
       .subscribe(
         (response) => {
           this.orderPlaced.emit();
+          this.showLoader = false;
         },
         (error) => {
           // Todo
-
+          this.showLoader = false;
         }
       );
   }
