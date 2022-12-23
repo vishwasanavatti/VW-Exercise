@@ -43,7 +43,6 @@ header {
 
 .qty-button {
     justify-content: space-evenly;
-    margin: 0 15px;
     display: flex;
     align-items: center;
 }

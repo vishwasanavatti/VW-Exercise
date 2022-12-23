@@ -37,3 +37,8 @@ header {
 .order {
     font-size: 24px;
 }
+
+.close{
+    font-size: 24px;
+    scale: 0.5;
+}
