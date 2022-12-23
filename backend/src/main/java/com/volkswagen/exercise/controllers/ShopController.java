@@ -20,11 +20,15 @@ public class ShopController {
 
 	@RequestMapping("/stock/model/{modelId}")
 	public List<Component> listComponents(@PathVariable int modelId) {
-		List<Component> components = shopService.listComponentsForModelId(modelId);
-		if (components == null) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-		}
+		try{
+			List<Component> components = shopService.listComponentsForModelId(modelId);
+			if (components == null) {
+				throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+			}
 
-		return components;
+			return components;
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 }
