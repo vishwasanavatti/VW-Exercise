@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ShopComponent } from '../model/component.model';
 
 @Component({
@@ -8,10 +9,15 @@ import { ShopComponent } from '../model/component.model';
 })
 export class OrderComponent implements OnInit {
 
+  apiHostUrl = 'http://localhost:8080/shop';
+
   @Input()
   orders: ShopComponent[] = [];
 
-  constructor() { }
+  @Output()
+  orderPlaced: EventEmitter<void> = new EventEmitter();
+
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     console.log(this.orders);
@@ -22,5 +28,23 @@ export class OrderComponent implements OnInit {
     if (index > -1) {
       this.orders.splice(index, 1);
     }
+  }
+
+  public placeOrder(): void {
+    console.log('here');
+    this.httpClient
+      .post(
+        this.apiHostUrl + '/order',
+        this.orders
+      )
+      .subscribe(
+        (response) => {
+          this.orderPlaced.emit();
+        },
+        (error) => {
+          // Todo
+
+        }
+      );
   }
 }

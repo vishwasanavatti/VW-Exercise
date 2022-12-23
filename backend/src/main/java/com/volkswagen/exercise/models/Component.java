@@ -10,6 +10,10 @@ public class Component {
 
 	private long quantity;
 
+	public Component() {
+
+	}
+
 	public Component(int id, String name, double price, long quantity) {
 		this.id = id;
 		this.name = name;

@@ -95,4 +95,9 @@ export class HomeComponent {
 
   }
 
+  public updatePlacedOrders(): void {
+    this.orderComponents = [];
+    this.showComponent = false;
+  }
+
 }

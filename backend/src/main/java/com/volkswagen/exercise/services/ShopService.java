@@ -39,4 +39,8 @@ public class ShopService {
 
 		return components;
 	}
+
+	public void updateComponents(List<Component> components) {
+		componentService.updateComponents(components);
+	}
 }
