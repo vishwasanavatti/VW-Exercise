@@ -40,14 +40,15 @@ public class ComponentService {
 		}
 	}
 
-	public void updateComponents(List<Component> components) {
+	public List<String> updateComponents(List<Component> components) {
+		errors = new ArrayList<>();
 		components.forEach(this::validateComponentQuantity);
 
-		if(!errors.isEmpty()) {
-			throw new UnsupportedOperationException(errors.toString());
+		if (errors.isEmpty()) {
+			components.forEach(this::updateComponent);
 		}
 
-		components.forEach(this::updateComponent);
+		return errors;
 	}
 
 	private void validateComponentQuantity(Component component) {

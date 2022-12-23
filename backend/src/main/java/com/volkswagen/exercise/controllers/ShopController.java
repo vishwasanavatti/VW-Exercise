@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -35,10 +36,11 @@ public class ShopController {
 	@RequestMapping("/order")
 	public ResponseEntity<?> orderComponents(@RequestBody List<Component> components) {
 		try {
-			shopService.updateComponents(components);
+			List<String> errors = shopService.updateComponents(components);
+			if(!errors.isEmpty()) {
+				return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+			}
 			return ResponseEntity.status(HttpStatus.CREATED).build();
-		} catch (UnsupportedOperationException e) {
-			return new ResponseEntity<String>(e.toString(), HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
 		}

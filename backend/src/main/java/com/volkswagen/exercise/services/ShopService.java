@@ -40,7 +40,7 @@ public class ShopService {
 		return components;
 	}
 
-	public void updateComponents(List<Component> components) {
-		componentService.updateComponents(components);
+	public List<String> updateComponents(List<Component> components) {
+		return componentService.updateComponents(components);
 	}
 }
