@@ -43,4 +43,12 @@ export class ComponentsComponent implements OnInit {
 
   }
 
+  public isDisabled(id: number): boolean {
+    let index = this.orderComponents.findIndex(c => c.id === id);
+    if (index > -1) {
+      return false;
+    }
+    return true;
+  }
+
 }
