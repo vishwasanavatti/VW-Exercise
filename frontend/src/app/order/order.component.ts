@@ -17,4 +17,10 @@ export class OrderComponent implements OnInit {
     console.log(this.orders);
   }
 
+  public removeOrderFromCart(id: number) {
+    let index = this.orders.findIndex(o => o.id === id);
+    if (index > -1) {
+      this.orders.splice(index, 1);
+    }
+  }
 }
