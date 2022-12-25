@@ -1,17 +1,16 @@
 package com.volkswagen.exercise.models;
 
-import java.util.List;
 import java.util.Set;
 
-public class Catalog {
+public class ModelCatalog {
 
 	private int model;
 
 	private String modelName;
 
-	private Set<Component> components;
+	private Set<ModelComponent> components;
 
-	public Catalog(int model, String modelName, Set<Component> components) {
+	public ModelCatalog(int model, String modelName, Set<ModelComponent> components) {
 		this.model = model;
 		this.modelName = modelName;
 		this.components = components;
@@ -33,11 +32,11 @@ public class Catalog {
 		this.modelName = modelName;
 	}
 
-	public Set<Component> getComponents() {
+	public Set<ModelComponent> getComponents() {
 		return components;
 	}
 
-	public void setComponents(Set<Component> components) {
+	public void setComponents(Set<ModelComponent> components) {
 		this.components = components;
 	}
 }

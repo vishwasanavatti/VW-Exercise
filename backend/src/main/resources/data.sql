@@ -4,11 +4,11 @@ Insert into COMPONENT (id, name, price, quantity) values (20003, 'component 3', 
 Insert into COMPONENT (id, name, price, quantity) values (20004, 'component 4', 45.00, 46);
 Insert into COMPONENT (id, name, price, quantity) values (20005, 'component 5', 112.00, 64);
 
-Insert into Model_Catalog (model, model_Name) values (1, 'model 1');
-Insert into Model_Catalog (model, model_Name) values (2, 'model 2');
-Insert into Model_Catalog (model, model_Name) values (3, 'model 3');
-Insert into Model_Catalog (model, model_Name) values (4, 'model 4');
-Insert into Model_Catalog (model, model_Name) values (5, 'model 5');
+Insert into catalog (model, model_Name) values (1, 'model 1');
+Insert into catalog (model, model_Name) values (2, 'model 2');
+Insert into catalog (model, model_Name) values (3, 'model 3');
+Insert into catalog (model, model_Name) values (4, 'model 4');
+Insert into catalog (model, model_Name) values (5, 'model 5');
 
 Insert into model_components (model_id, component_id) values (1, 20001);
 Insert into model_components (model_id, component_id) values (1, 20002);

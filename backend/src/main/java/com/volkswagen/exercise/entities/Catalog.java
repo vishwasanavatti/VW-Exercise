@@ -1,13 +1,14 @@
 package com.volkswagen.exercise.entities;
 
-import com.volkswagen.exercise.models.Catalog;
+import com.volkswagen.exercise.models.ModelCatalog;
+import com.volkswagen.exercise.models.ModelComponent;
 import jakarta.persistence.*;
 
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
-public class ModelCatalog {
+public class Catalog {
 
 	@Id
 	@GeneratedValue
@@ -45,12 +46,12 @@ public class ModelCatalog {
 		this.components = components;
 	}
 
-	public Catalog toCatalog(ModelCatalog modelCatalog) {
-		Set<com.volkswagen.exercise.models.Component> modelComponents = null;
-		if(modelCatalog.getComponents() != null) {
-			modelComponents = modelCatalog.getComponents().stream().map(component -> component.toModelComponent(component)).collect(Collectors.toSet());
+	public ModelCatalog toModelCatalog(Catalog catalog) {
+		Set<ModelComponent> modelComponents = null;
+		if(catalog.getComponents() != null) {
+			modelComponents = catalog.getComponents().stream().map(component -> component.toModelComponent(component)).collect(Collectors.toSet());
 		}
 
-		return new Catalog(modelCatalog.getModel(), modelCatalog.getModelName(), modelComponents);
+		return new ModelCatalog(catalog.getModel(), catalog.getModelName(), modelComponents);
 	}
 }

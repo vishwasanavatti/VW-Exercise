@@ -1,5 +1,6 @@
 package com.volkswagen.exercise.entities;
 
+import com.volkswagen.exercise.models.ModelComponent;
 import jakarta.persistence.*;
 
 import java.util.Set;
@@ -17,7 +18,7 @@ public class Component {
 	private long quantity;
 
 	@ManyToMany(mappedBy = "components")
-	private Set<ModelCatalog> catalogs;
+	private Set<Catalog> catalogs;
 
 	public int getId() {
 		return id;
@@ -51,15 +52,15 @@ public class Component {
 		this.quantity = quantity;
 	}
 
-	public Set<ModelCatalog> getCatalogs() {
+	public Set<Catalog> getCatalogs() {
 		return catalogs;
 	}
 
-	public void setCatalogs(Set<ModelCatalog> catalogs) {
+	public void setCatalogs(Set<Catalog> catalogs) {
 		this.catalogs = catalogs;
 	}
 
-	public com.volkswagen.exercise.models.Component toModelComponent(Component component) {
-		return new com.volkswagen.exercise.models.Component(component.id, component.name, component.price, component.quantity);
+	public ModelComponent toModelComponent(Component component) {
+		return new ModelComponent(component.id, component.name, component.price, component.quantity);
 	}
 }

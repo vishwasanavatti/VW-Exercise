@@ -1,6 +1,6 @@
 package com.volkswagen.exercise.controllers;
 
-import com.volkswagen.exercise.models.Component;
+import com.volkswagen.exercise.models.ModelComponent;
 import com.volkswagen.exercise.services.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -23,7 +22,7 @@ public class ShopController {
 	ShopService shopService;
 
 	@RequestMapping("/stock/model/{modelId}")
-	public List<Component> listComponents(@PathVariable int modelId) {
+	public List<ModelComponent> listComponents(@PathVariable int modelId) {
 		try {
 			return shopService.listComponentsForModelId(modelId);
 		} catch (NoSuchElementException e) {
@@ -34,7 +33,7 @@ public class ShopController {
 	}
 
 	@RequestMapping("/order")
-	public ResponseEntity<?> orderComponents(@RequestBody List<Component> components) {
+	public ResponseEntity<?> orderComponents(@RequestBody List<ModelComponent> components) {
 		try {
 			List<String> errors = shopService.updateComponents(components);
 			if(!errors.isEmpty()) {

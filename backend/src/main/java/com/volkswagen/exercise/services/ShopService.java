@@ -1,7 +1,7 @@
 package com.volkswagen.exercise.services;
 
-import com.volkswagen.exercise.models.Catalog;
-import com.volkswagen.exercise.models.Component;
+import com.volkswagen.exercise.models.ModelCatalog;
+import com.volkswagen.exercise.models.ModelComponent;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -20,10 +20,10 @@ public class ShopService {
 		this.catalogService = catalogService;
 	}
 
-	public List<Component> listComponentsForModelId(int modelId) {
-		List<Component> components = new ArrayList<>();
+	public List<ModelComponent> listComponentsForModelId(int modelId) {
+		List<ModelComponent> components = new ArrayList<>();
 
-		Catalog catalog = catalogService.getCatalogByModelId(modelId);
+		ModelCatalog catalog = catalogService.getCatalogByModelId(modelId);
 
 		if (catalog == null) {
 			throw new NoSuchElementException("catalog with modelId "+modelId+" is not found.");
@@ -34,7 +34,7 @@ public class ShopService {
 		return components;
 	}
 
-	public List<String> updateComponents(List<Component> components) {
+	public List<String> updateComponents(List<ModelComponent> components) {
 		return componentService.updateComponents(components);
 	}
 }

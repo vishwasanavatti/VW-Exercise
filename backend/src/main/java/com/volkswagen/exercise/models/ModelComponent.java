@@ -1,6 +1,6 @@
 package com.volkswagen.exercise.models;
 
-public class Component {
+public class ModelComponent {
 
 	private int id;
 
@@ -10,11 +10,11 @@ public class Component {
 
 	private long quantity;
 
-	public Component() {
+	public ModelComponent() {
 
 	}
 
-	public Component(int id, String name, double price, long quantity) {
+	public ModelComponent(int id, String name, double price, long quantity) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
