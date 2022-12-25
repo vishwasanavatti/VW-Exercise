@@ -36,10 +36,10 @@ public class ShopController {
 	public ResponseEntity<?> orderComponents(@RequestBody List<ModelComponent> components) {
 		try {
 			List<String> errors = shopService.updateComponents(components);
-			if(!errors.isEmpty()) {
+			if (!errors.isEmpty()) {
 				return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
 			}
-			return ResponseEntity.status(HttpStatus.CREATED).build();
+			return ResponseEntity.status(HttpStatus.OK).build();
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
