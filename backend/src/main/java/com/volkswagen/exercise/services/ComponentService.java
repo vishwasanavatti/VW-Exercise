@@ -1,6 +1,8 @@
 package com.volkswagen.exercise.services;
 
 import com.volkswagen.exercise.models.Component;
+import com.volkswagen.exercise.repositories.ComponentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,6 +12,9 @@ import java.util.logging.Logger;
 
 @Service
 public class ComponentService {
+
+	@Autowired
+	private ComponentRepository componentRepository;
 
 	private static final Logger logger = Logger.getLogger(ComponentService.class.getName());
 	private static List<Component> components = new ArrayList<>();
@@ -30,14 +35,27 @@ public class ComponentService {
 	}
 
 	public Component getComponentById(int id) {
-		return components.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
+		com.volkswagen.exercise.entities.Component component = componentRepository.findById(id).orElse(null);
+		if(component == null) return null;
+		return component.toModelComponent(component);
 	}
 
 	public void updateComponent(Component component) {
 		Component existingComponent = getComponentById(component.getId());
-		if (existingComponent != null) {
-			existingComponent.setQuantity(existingComponent.getQuantity() - component.getQuantity());
+		if (existingComponent == null) {
+			logger.warning("Component with id : "+component.getId()+" could not updated");
+			return;
 		}
+
+		existingComponent.setQuantity(existingComponent.getQuantity() - component.getQuantity());
+
+		com.volkswagen.exercise.entities.Component saveComponent = new com.volkswagen.exercise.entities.Component();
+		saveComponent.setId(existingComponent.getId());
+		saveComponent.setName(existingComponent.getName());
+		saveComponent.setPrice(existingComponent.getPrice());
+		saveComponent.setQuantity(existingComponent.getQuantity());
+
+		componentRepository.save(saveComponent);
 	}
 
 	public List<String> updateComponents(List<Component> components) {

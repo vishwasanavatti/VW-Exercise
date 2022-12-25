@@ -1,8 +1,10 @@
 package com.volkswagen.exercise.entities;
 
+import com.volkswagen.exercise.models.Catalog;
 import jakarta.persistence.*;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class ModelCatalog {
@@ -41,5 +43,14 @@ public class ModelCatalog {
 
 	public void setComponents(Set<Component> components) {
 		this.components = components;
+	}
+
+	public Catalog toCatalog(ModelCatalog modelCatalog) {
+		Set<com.volkswagen.exercise.models.Component> modelComponents = null;
+		if(modelCatalog.getComponents() != null) {
+			modelComponents = modelCatalog.getComponents().stream().map(component -> component.toModelComponent(component)).collect(Collectors.toSet());
+		}
+
+		return new Catalog(modelCatalog.getModel(), modelCatalog.getModelName(), modelComponents);
 	}
 }

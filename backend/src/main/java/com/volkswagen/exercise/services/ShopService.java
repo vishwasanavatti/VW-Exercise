@@ -2,13 +2,12 @@ package com.volkswagen.exercise.services;
 
 import com.volkswagen.exercise.models.Catalog;
 import com.volkswagen.exercise.models.Component;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 public class ShopService {
@@ -30,12 +29,7 @@ public class ShopService {
 			throw new NoSuchElementException("catalog with modelId "+modelId+" is not found.");
 		}
 
-		catalog.getComponentIds().forEach(id -> {
-			Component component = componentService.getComponentById(id);
-			if(component != null && component.getQuantity() > 0) {
-				components.add(component);
-			}
-		});
+		components = catalog.getComponents().stream().filter(component -> component.getQuantity() > 0).collect(Collectors.toList());
 
 		return components;
 	}

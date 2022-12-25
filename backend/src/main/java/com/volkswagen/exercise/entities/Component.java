@@ -58,4 +58,8 @@ public class Component {
 	public void setCatalogs(Set<ModelCatalog> catalogs) {
 		this.catalogs = catalogs;
 	}
+
+	public com.volkswagen.exercise.models.Component toModelComponent(Component component) {
+		return new com.volkswagen.exercise.models.Component(component.id, component.name, component.price, component.quantity);
+	}
 }
