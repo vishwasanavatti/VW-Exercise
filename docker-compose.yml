@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  backendserver:
+    # https://stackoverflow.com/questions/64221861/an-error-failed-to-solve-with-frontend-dockerfile-v0
+    # export command is added to avoid the following error
+    # ERROR: Service 'backendserver' failed to build : Get "https://registry-1.docker.io/v2/": dial tcp: 
+    # lookup registry-1.docker.io on 192.168.65.5:53: read udp 192.168.65.4:60859->192.168.65.5:53: i/o timeout
+    command: > 
+      bash -c "export DOCKER_BUILDKIT=0 &&
+      export COMPOSE_DOCKER_CLI_BUILD=0"
+    build: 
+      context: ./backend/
+      dockerfile: Dockerfile
+    ports:
+           - "8080:8080"
+    restart: always
+  angular-service:
+    command: > 
+      bash -c "export DOCKER_BUILDKIT=0 &&
+      export COMPOSE_DOCKER_CLI_BUILD=0"
+    container_name: angularcontainer
+    build: ./frontend
+    volumes: 
+      - './frontend:/app' 
+    ports: 
+      - '4200:4200'
+    command: > 
+      bash -c "npm start"
+    links:
+      - "backendserver"
+    depends_on:
+      - "backendserver"
