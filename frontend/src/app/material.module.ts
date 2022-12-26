@@ -1,3 +1,7 @@
+/**
+ * @description
+ * This module import and exports the material components used in this application.
+ */
 import { ModuleWithProviders, NgModule } from "@angular/core";
 import { MatIconRegistry } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';

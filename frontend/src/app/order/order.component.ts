@@ -1,3 +1,8 @@
+/**
+ * @description
+ * This component renders the orders in the cart. Once user clicks on `Add to Cart` 
+ * then the added component information is rendered in this component.
+ */
 import { HttpClient } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ShopComponent } from '../model/component.model';
@@ -17,20 +22,28 @@ export class OrderComponent implements OnInit {
   @Output()
   orderPlaced: EventEmitter<void> = new EventEmitter();
 
+  // boolean value to show loader when order is placed
   showLoader = false;
 
+  // boolean value to show error when order is placed
   showError = false;
 
+  // boolean value to show success when order is placed
   showSuccess = false;
 
+  // contains list of errors which received when order is placed
   errors: string[] = [];
 
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
-    console.log(this.orders);
+
   }
 
+  /**
+   * This method is used to remove the order from cart
+   * @param id 
+   */
   public removeOrderFromCart(id: number) {
     let index = this.orders.findIndex(o => o.id === id);
     if (index > -1) {
@@ -38,9 +51,16 @@ export class OrderComponent implements OnInit {
     }
   }
 
+  /**
+   * This method is used place the order .The api 'http://localhost:8080/shop/order' will be called with 
+   * payload containg the orders. 
+   * The success message is shown if order placed successfully else if there are errors during order, a list of errors is captured from the 
+   * response and are displayed.
+   * @param id 
+   */
   public placeOrder(): void {
     this.showLoader = true;
-    console.log('here');
+
     this.httpClient
       .post(
         this.apiHostUrl + '/order',

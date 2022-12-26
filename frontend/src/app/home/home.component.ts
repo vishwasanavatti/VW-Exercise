@@ -1,3 +1,8 @@
+/**
+ * @description
+ * This component renders the home page information and contains actions 
+ * to display the components and orders.
+ */
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -12,18 +17,26 @@ export class HomeComponent {
 
   apiHostUrl = 'http://localhost:8080';
 
+  // boolean value to display the components or not
   showComponent = false;
 
+  // boolean value to display the orders or not
   showOrder = false;
 
+  // contains list of components information
   components: ShopComponent[] = [];
 
+  // contains list of components that are in the cart for ordering
   orderComponents: ShopComponent[] = [];
 
+  // boolean value to display the loader while waiting for response from backend
   showLoader = false;
 
   constructor(private httpClient: HttpClient) { }
 
+  /**
+   * form froup to validate the input field for model
+   */
   public form = new FormGroup({
     model: new FormControl('', Validators.compose([
       Validators.minLength(1),
@@ -33,16 +46,29 @@ export class HomeComponent {
     )
   });
 
+  /**
+   * returns model from form with validations
+   */
   public get model() { return this.form.get('model'); }
 
+  /**
+   * returns boolean to display compoents or not
+   */
   public get showComponents(): boolean {
     return this.showComponent;
   }
 
+  /**
+   * returns boolean to display orders or not
+   */
   public get showOrders(): boolean {
     return this.orderComponents.length > 0;
   }
 
+  /**
+   * when "search" button is clicked. The backend api 'http://localhost:8080/shop/stock/model/{modelId}'
+   * is called.
+   */
   public onClick(): void {
     this.showLoader = true;
     const modelId = +this.model.value;
@@ -54,9 +80,9 @@ export class HomeComponent {
         (response) => {
           this.showComponent = true;
           this.components = response as ShopComponent[];
-          this.model.setValue('');
+          this.model.setValue(''); // reset value after search
           this.showLoader = false;
-          this.form.get('model').setErrors(null);
+          this.form.get('model').setErrors(null); // do not show errors after search is success
         },
         (error) => {
           // Todo
@@ -70,10 +96,18 @@ export class HomeComponent {
       );
   }
 
+  /**
+   * This method is used to enable the search button based on the input value 
+   */
   public get isDisabled(): boolean {
     return this.form.get('model').invalid;
   }
 
+
+  /**
+   * This method updates the orders list that are added to the cart.
+   * @param order 
+   */
   public updateOrders(order: ShopComponent) {
     let comp = this.orderComponents.find(c => c.id === order.id);
     if (comp) {
@@ -85,6 +119,9 @@ export class HomeComponent {
 
   }
 
+  /**
+   * This method reset order list after the order is placed successfully and also hides the components shown
+   */
   public updatePlacedOrders(): void {
     this.orderComponents = [];
     this.showComponent = false;

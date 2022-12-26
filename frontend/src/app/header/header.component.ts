@@ -1,3 +1,7 @@
+/**
+ * @description
+ * This component renders the header information.
+ */
 import { Component, OnInit } from '@angular/core';
 
 @Component({
