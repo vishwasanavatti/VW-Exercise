@@ -22,6 +22,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+/**
+ * Test class for {@link ShopController}.
+ * Tests use Mockito to mock the service and repository and the objects are initialised by the spring container.
+ */
 @WebMvcTest(ShopController.class)
 public class ShopControllerTest {
 

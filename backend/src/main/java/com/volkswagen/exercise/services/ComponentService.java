@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+/**
+ * This class provides service for {@link Component} which communicates with {@link ComponentRepository}.
+ * This provides function to update the components and get the components from Component DB.
+ */
 @Service
 public class ComponentService {
 
@@ -41,14 +45,14 @@ public class ComponentService {
 
 	public ModelComponent getComponentById(int id) {
 		Component component = componentRepository.findById(id).orElse(null);
-		if(component == null) return null;
+		if (component == null) return null;
 		return component.toModelComponent(component);
 	}
 
 	public void updateComponent(ModelComponent component) {
 		ModelComponent existingComponent = getComponentById(component.getId());
 		if (existingComponent == null) {
-			logger.warning("Component with id : "+component.getId()+" could not updated");
+			logger.warning("Component with id : " + component.getId() + " could not updated");
 			return;
 		}
 
@@ -77,11 +81,11 @@ public class ComponentService {
 	private void validateComponentQuantity(ModelComponent component) {
 		ModelComponent existingComponent = getComponentById(component.getId());
 		if (existingComponent == null) {
-			logger.warning("component is not found for id : "+component.getId());
-			errors.add("component "+component.getName()+" not found");
+			logger.warning("component is not found for id : " + component.getId());
+			errors.add("component " + component.getName() + " not found");
 		} else {
 			if (existingComponent.getQuantity() < component.getQuantity()) {
-				errors.add("Order cannot be placed for component "+component.getName()+" due to insufficient quantity");
+				errors.add("Order cannot be placed for component " + component.getName() + " due to insufficient quantity");
 			}
 		}
 	}

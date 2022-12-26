@@ -1,17 +1,26 @@
 package com.volkswagen.exercise.services;
 
 import com.volkswagen.exercise.entities.Catalog;
+import com.volkswagen.exercise.entities.Component;
 import com.volkswagen.exercise.models.ModelCatalog;
 import com.volkswagen.exercise.repositories.CatalogRepository;
+import com.volkswagen.exercise.repositories.ComponentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * This class provides service for {@link Component} which communicates with {@link ComponentRepository}.
+ * This provides function to get the catalogs from Component DB.
+ */
 @Service
 public class CatalogService {
 
+	/**
+	 * Autowired means that the object is initialised by the spring boot container
+	 */
 	@Autowired
 	private CatalogRepository catalogRepository;
 
@@ -42,7 +51,7 @@ public class CatalogService {
 
 	public ModelCatalog getCatalogByModelId(int modelId) {
 		Catalog catalog = catalogRepository.findById(modelId).orElse(null);
-		if(catalog == null) return null;
+		if (catalog == null) return null;
 
 		return catalog.toModelCatalog(catalog);
 	}

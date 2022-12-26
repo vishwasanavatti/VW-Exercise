@@ -14,6 +14,9 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+/**
+ * This is the main controller API which provides two endpoints to get components and place order
+ */
 @RestController
 @RequestMapping("/shop")
 public class ShopController {
@@ -21,6 +24,12 @@ public class ShopController {
 	@Autowired
 	ShopService shopService;
 
+	/**
+	 * The endpoint to get the compatible components list for the given model id
+	 * returns Not_Found status if no component found for the given model Id
+	 * @param modelId - model id of the car
+	 * @return - list of components compatible for the model
+	 */
 	@RequestMapping("/stock/model/{modelId}")
 	public List<ModelComponent> listComponents(@PathVariable int modelId) {
 		try {
@@ -32,6 +41,13 @@ public class ShopController {
 		}
 	}
 
+	/**
+	 * The endpoint to update the components based on the placed order.
+	 * returns BAD_REQUEST status with errors string if any errors found during update
+	 * else returns OK status. (returns OK and not CREATED because it is updating existing component)
+	 * @param components - components input to be updated
+	 * @return - response entity with errors string
+	 */
 	@RequestMapping("/order")
 	public ResponseEntity<?> orderComponents(@RequestBody List<ModelComponent> components) {
 		try {

@@ -2,6 +2,9 @@ package com.volkswagen.exercise.models;
 
 import java.util.Set;
 
+/**
+ * Model created to transfer object between database and UI for {@link com.volkswagen.exercise.entities.Catalog}
+ */
 public class ModelCatalog {
 
 	private int model;

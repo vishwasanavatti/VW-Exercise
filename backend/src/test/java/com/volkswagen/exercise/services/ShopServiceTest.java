@@ -18,6 +18,9 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.Mockito.when;
 
+/**
+ * Test class for {@link ShopService}.
+ */
 @ExtendWith(MockitoExtension.class)
 public class ShopServiceTest {
 

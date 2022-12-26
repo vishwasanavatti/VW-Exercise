@@ -7,6 +7,13 @@ import jakarta.persistence.*;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * Entity class created for the DB persistence of Catalog
+ * Has {@link Catalog#model} and {@link Catalog#modelName} name as attribute and contains many to many relation with
+ * {@link Component}. Since each model can have multiple {@link Component} that are compatible and vice versa.
+ * {@link Component} and {@link Catalog} are linked by a another table called "model_component" which have two columns
+ * "model_id" and "component_id".
+ */
 @Entity
 public class Catalog {
 
@@ -17,9 +24,9 @@ public class Catalog {
 	private String modelName;
 
 	@ManyToMany
-	@JoinTable(name="model_components",
-			joinColumns = { @JoinColumn(name = "model_id") },
-			inverseJoinColumns = { @JoinColumn(name = "component_id") })
+	@JoinTable(name = "model_components",
+			joinColumns = {@JoinColumn(name = "model_id")},
+			inverseJoinColumns = {@JoinColumn(name = "component_id")})
 	private Set<Component> components;
 
 	public int getModel() {
@@ -48,7 +55,7 @@ public class Catalog {
 
 	public ModelCatalog toModelCatalog(Catalog catalog) {
 		Set<ModelComponent> modelComponents = null;
-		if(catalog.getComponents() != null) {
+		if (catalog.getComponents() != null) {
 			modelComponents = catalog.getComponents().stream().map(component -> component.toModelComponent(component)).collect(Collectors.toSet());
 		}
 

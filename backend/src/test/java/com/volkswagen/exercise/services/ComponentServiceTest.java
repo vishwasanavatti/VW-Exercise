@@ -17,6 +17,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
+/**
+ * Test class for {@link ComponentService}.
+ */
 @ExtendWith(MockitoExtension.class)
 public class ComponentServiceTest {
 

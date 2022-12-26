@@ -1,5 +1,6 @@
 package com.volkswagen.exercise.services;
 
+import com.volkswagen.exercise.controllers.ShopController;
 import com.volkswagen.exercise.entities.Catalog;
 import com.volkswagen.exercise.models.ModelCatalog;
 import com.volkswagen.exercise.repositories.CatalogRepository;
@@ -19,6 +20,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
+/**
+ * Test class for {@link CatalogService}.
+ */
 @ExtendWith(MockitoExtension.class)
 public class CatalogServiceTest {
 	@InjectMocks

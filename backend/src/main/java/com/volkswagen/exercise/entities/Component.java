@@ -5,6 +5,12 @@ import jakarta.persistence.*;
 
 import java.util.Set;
 
+/**
+ * Entity class created for the DB persistence of Component.
+ * Has {@link Component#id}, {@link Component#name}, {@link Component#price} and {@link Component#quantity} attributes
+ * and contains many to many relation with {@link Catalog}. Each component can be compatible with multiple
+ * {@link Catalog}  (model) and different model can have same component which is compatible so we have many to many relation.
+ */
 @Entity
 public class Component {
 	@Id
