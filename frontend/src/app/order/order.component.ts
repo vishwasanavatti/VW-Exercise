@@ -75,7 +75,8 @@ export class OrderComponent implements OnInit {
           }, 2000);
         },
         (error) => {
-          this.errors = error.error;
+          console.log("log", error);
+          this.errors = error.error as string[];
           this.showError = true
           this.showLoader = false;
         }
