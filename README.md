@@ -1,6 +1,10 @@
 # VW-Exercise
 This is a volkswagen exercise project
 
+# Design 
+
+The design information can be found [here](./design%20diagrams/README.md).
+
 # Frontend
 
 ## Development
@@ -10,6 +14,7 @@ When developing code for the frontend, the following tools are used:
 - Code Editor: VS Code
 - Browser: Chrome
 - NodeJS with NPM - node version 12
+- Angular 9
 
 ## NPM
 
@@ -25,6 +30,10 @@ Go to frontend folder
 > `cd frontend`
 
 Now, you can run the project using `ng serve`. A dev server will start on `localhost:4200`.
+
+## Test
+
+use `ng test` command to run the tests.
 
 # Backend Server (Restful API server)
 
@@ -71,6 +80,10 @@ A dev server will start on `localhost:8080`
 ## Test
 
 use `mvn test` command to run the tests.
+
+## Database Data
+
+When the backend application starts, the three tables will be created with data. The insert scripts used for the table can be found [here](./backend/src/main/resources/data.sql).
 
 # Docker
 It is used to dockerize the application. The best approach to start the application is to use the docker.
